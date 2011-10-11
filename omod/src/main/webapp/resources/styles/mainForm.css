@@ -1,0 +1,28 @@
+  th { text-align: left }
+  th.headerCell {
+      border-top: 1px lightgrey solid;
+      xborder-right: 1px lightgrey solid
+  }
+  td.inputCell {
+      border-top: 1px lightgrey solid;
+  }
+  td.inputCell th {
+      font-weight: normal;
+  }
+  .lastCell {
+      border-bottom: 1px lightgrey solid;
+  }
+  .over { background: #00FF99; }
+  .registerError {
+      border:1px dashed white;
+      margin-left:4px;
+      margin-right:4px;
+      padding:1px 6px;
+      vertical-align:middle;
+      background:pink;
+      display:none;
+  }
+  #loadingIcon{
+      padding-right: 10px;
+      display:none;
+  }

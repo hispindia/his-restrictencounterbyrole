@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="@MODULE_PACKAGE@" >
+
+	<class name="EncTypeRestriction" table="restrictbyenctype_role_restriction" batch-size="25">
+		<id name="roleRestrictionId" type="int" column="role_restriction_id"
+			unsaved-value="0">
+			<generator class="native" />
+		</id>
+
+		<property name="description" type="java.lang.String" column="description" not-null="true" length="100" />
+		<many-to-one name="role" class="org.openmrs.Role" unique="true" not-null="true">
+			<column name="role" />
+		</many-to-one>
+
+ 	    <set name="encTypes"  lazy="false" table="role_encounter_type" >
+		        <key column="role_restriction_id"/>
+		        <many-to-many column="encounter_type_id"
+	            class="org.openmrs.EncounterType"/>
+	    </set>		 
+
+<!-- General properties -->
+		<many-to-one name="creator" class="org.openmrs.User" lazy="no-proxy" />
+
+		<property name="dateCreated" type="java.util.Date"
+			column="date_created" not-null="true" length="19" />
+
+		<many-to-one name="changedBy" class="org.openmrs.User" column="changed_by" />
+
+		<property name="dateChanged" type="java.util.Date"
+			column="date_changed" length="19" />
+
+		<property name="voided" type="boolean" not-null="true" />
+
+		<many-to-one name="voidedBy" class="org.openmrs.User" column="voided_by" />
+
+		<property name="dateVoided" type="java.util.Date"
+			column="date_voided" length="19" />
+
+		<property name="voidReason" type="java.lang.String"
+			column="void_reason" length="255" />
+
+	</class>
+
+</hibernate-mapping>

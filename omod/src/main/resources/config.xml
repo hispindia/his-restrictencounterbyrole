@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<module configVersion="1.0">
+	
+	<!-- Base Module Properties -->
+	<id>@MODULE_ID@</id>
+	<name>@MODULE_NAME@</name>
+	<version>@MODULE_VERSION@</version>
+	<package>@MODULE_PACKAGE@</package>
+	<author>Murodillo Latifov A.</author>
+	<description>
+			Allow roles to be restricted to viewing only encounters by type, which are assigned to use roles.
+	</description>
+
+	<activator>@MODULE_PACKAGE@.RestrictByEncTypeActivator</activator>
+	
+	<!-- <updateURL>https://dev.openmrs.org/modules/download/@MODULE_ID@/update.rdf</updateURL> -->
+	<!-- /Base Module Properties -->
+	
+	<require_version>1.1.10.2200</require_version>
+	
+	<!-- Extensions -->
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>@MODULE_PACKAGE@.extension.html.AdminList</class>
+	</extension>
+	<!-- /Extensions -->
+	
+	
+	<!-- AOP -->
+	<advice>
+		<point>org.openmrs.api.EncounterService</point>
+		<class>@MODULE_PACKAGE@.advice.EncounterGetterAdvisor</class>
+	</advice>
+	<!--advice>
+		<point>org.openmrs.api.PatientService</point>
+		<class>@MODULE_PACKAGE@.advice.GetManyPatientsAdvisor</class>
+	</advice>
+	<advice>
+		<point>org.openmrs.api.PatientSetService</point>
+		<class>@MODULE_PACKAGE@.advice.GetManyPatientsAdvisor</class>
+	</advice-->
+	<!-- /AOP -->
+	
+	
+	<!-- Internationalization -->
+	<!-- All message codes should start with @MODULE_ID@.* -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<messages>
+		<lang>es</lang>
+		<file>messages_es.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+	<!-- Hibernate Mappings -->
+	<mappingFiles>
+		${omodHbmConfig}
+	</mappingFiles>
+
+</module>
+
